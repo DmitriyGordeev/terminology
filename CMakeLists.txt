@@ -30,5 +30,5 @@ set(TEST_OBJECT
         ${FILEIO_SOURCE}
         test/test_Fileio/test_Fileio.cpp)
 
-add_executable(test_Object ${TEST_OBJECT})
-target_link_libraries(test_Object ${GTEST_LIBS})
+add_executable(test_Fileio ${TEST_OBJECT})
+target_link_libraries(test_Fileio ${GTEST_LIBS})

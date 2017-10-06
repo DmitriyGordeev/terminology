@@ -7,7 +7,7 @@ class Fileio
 {
 public:
     static std::string read(const std::string& filename);
-    static std::string write(const std::string& filename, const std::string& content);
+    static void write(const std::string& filename, const std::string& content);
 };
 
 

@@ -7,13 +7,14 @@
 
 using namespace std;
 
+int main(int argc, char** argv) {
 
-int main() {
+    system("mkdir -p resource");
 
     std::string url = "https://ru.wikipedia.org/wiki/Заглавная_страница";
     RestClient::Response r = RestClient::get(url);
 
-    cout << r.body << endl;
+    Fileio::write("resource/wikipedia.org", r.body);
 
     return 0;
 }

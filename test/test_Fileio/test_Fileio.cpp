@@ -7,7 +7,9 @@ using namespace std;
 
 const string test_folder_prefix = "../test/";
 
-TEST(Fileio, test_readNotThrowsException)
+
+/* Fileio::read() method */
+TEST(Fileio_readMethod, test_readNotThrowsAnException)
 {
     string filename = test_folder_prefix + "test_Fileio/resources/read_test.txt";
     string content;
@@ -20,7 +22,20 @@ TEST(Fileio, test_readNotThrowsException)
     }
 }
 
-TEST(Fileio, test_readValidContent)
+TEST(Fileio_readMethod, test_readThrowsAnException)
+{
+    string filename = test_folder_prefix + "test_Fileio/resources/some_not_existing_filename.txt";
+    string content;
+    try {
+        content = Fileio::read(filename);
+        FAIL();
+    }
+    catch(exception& e) {
+        cout << "Test right behaviour message: " << e.what() << endl;
+    }
+}
+
+TEST(Fileio_readMethod, test_readValidContent)
 {
     string filename = test_folder_prefix + "test_Fileio/resources/read_test.txt";
     string content;
@@ -33,6 +48,43 @@ TEST(Fileio, test_readValidContent)
         FAIL();
     }
 }
+
+
+/* Fileio::write() method */
+TEST(Fileio_writeMethod, test_writeNotThrowsAnException)
+{
+    std::string content = "some new content here\nwith second line";
+    try {
+        Fileio::write(test_folder_prefix + "test_Fileio/resources/write_test_output.txt", content);
+    }
+    catch(exception& e) {
+        FAIL();
+    }
+}
+
+TEST(Fileio_writeMethod, test_writeThrowsAnException)
+{
+    // TODO: create this test case
+}
+
+TEST(Fileio_writeMethod, test_writeValidContent)
+{
+    std::string content = "some new content here\nwith second line";
+    try {
+        Fileio::write(test_folder_prefix + "test_Fileio/resources/write_test_output.txt", content);
+        try {
+            string actual = Fileio::read(test_folder_prefix + "test_Fileio/resources/write_test_output.txt");
+            EXPECT_EQ(content, actual);
+        }
+        catch(exception& e) {
+            FAIL() << "file was not wrote" << endl;
+        }
+    }
+    catch(exception& e) {
+        FAIL();
+    }
+}
+
 
 
 int main(int argc, char** argv) {

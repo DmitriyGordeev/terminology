@@ -3,6 +3,8 @@
 #include <restclient-cpp/connection.h>
 #include <restclient-cpp/restclient.h>
 
+#include "Fileio/Fileio.h"
+
 using namespace std;
 
 

@@ -9,9 +9,16 @@ set(FILEIO_SOURCE
         src/Fileio/Fileio.h
         src/Fileio/Fileio.cpp)
 
+set(WIKI-PAGE-PARSER_SOURCE
+        src/WikiPageParser/WikiPageParser.h
+        src/WikiPageParser/WikiPageParser.cpp)
+
 
 # project:
-set(SOURCE_FILES src/main.cpp ${FILEIO_SOURCE})
+set(SOURCE_FILES src/main.cpp
+        ${FILEIO_SOURCE}
+        ${WIKI-PAGE-PARSER_SOURCE})
+
 add_executable(Project ${SOURCE_FILES})
 target_link_libraries(Project
         restclient-cpp

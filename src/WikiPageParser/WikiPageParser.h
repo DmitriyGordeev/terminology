@@ -4,6 +4,7 @@
 #include <string>
 #include <regex>
 
+
 class WikiPageParser {
 public:
     static std::string getArticle();

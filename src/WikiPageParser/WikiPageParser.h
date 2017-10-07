@@ -4,10 +4,9 @@
 #include <string>
 #include <regex>
 
-
 class WikiPageParser {
 public:
-    static std::string getArticle();
+    static std::string gumboExample(const std::string& htmlCode);
 };
 
 

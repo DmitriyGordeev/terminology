@@ -14,17 +14,6 @@ int main(int argc, char** argv) {
     system("mkdir -p resource");
 
 
-    string content;
-    try {
-       content = Fileio::read("resource/jupiter.wikipedia.org.html");
-    }
-    catch(exception& e) {
-        cout << e.what() << endl;
-        return 0;
-    }
-
-    string data = WikiPageParser::gumboExample(content);
-    cout << data << endl;
 
     return 0;
 }

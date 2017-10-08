@@ -17,7 +17,7 @@ set(WIKI-PAGE-PARSER_SOURCE
 # project:
 set(SOURCE_FILES src/main.cpp
         ${FILEIO_SOURCE}
-        ${WIKI-PAGE-PARSER_SOURCE})
+        ${WIKI-PAGE-PARSER_SOURCE} src/WordEngine/WordMatrixExp.cpp src/WordEngine/WordMatrixExp.h)
 
 add_executable(Project ${SOURCE_FILES})
 target_link_libraries(Project

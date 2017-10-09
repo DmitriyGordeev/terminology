@@ -17,7 +17,7 @@ set(WORD_MATRIX_CLASS_SOURCE
         src/WordEngine/WordMatrixExp.h
         src/WordEngine/WordMatrixExp.cpp)
 
-set(GRAPH_CLASS_SOURCE
+set(GRAPH_SOURCE
         src/WordEngine/Graph.h
         src/WordEngine/Graph.cpp)
 
@@ -26,7 +26,7 @@ set(GRAPH_CLASS_SOURCE
 # project:
 set(SOURCE_FILES src/main.cpp
         ${FILEIO_SOURCE}
-        ${GRAPH_CLASS_SOURCE}
+        ${GRAPH_SOURCE}
         ${WIKI_PAGE_PARSER_SOURCE})
 
 add_executable(Project ${SOURCE_FILES})
@@ -53,3 +53,10 @@ set(FILEIO_TESTS
         test/test_Fileio/test_Fileio.cpp)
 add_executable(test_Fileio ${FILEIO_TESTS})
 target_link_libraries(test_Fileio ${GTEST_LIBS})
+
+# Graph
+set(GRAPH_TESTS
+        ${GRAPH_SOURCE}
+        test/test_Graph/test_Graph.cpp)
+add_executable(test_Graph ${GRAPH_TESTS})
+target_link_libraries(test_Graph ${GTEST_LIBS})

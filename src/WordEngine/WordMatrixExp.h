@@ -6,6 +6,8 @@
 class WordMatrixExp
 {
 public:
+
+    // TODO: make test for all these methods:
     WordMatrixExp();
     WordMatrixExp(int rows, int cols);
     WordMatrixExp(const WordMatrixExp& object);

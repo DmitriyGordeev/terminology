@@ -14,6 +14,9 @@ public:
     int rows() const { return _rows; }
     int cols() const { return _cols; }
 
+    void setValue(const std::string& value, int rowIndex, int colIndex);
+    std::string getValue(int rowIndex, int colIndex) const;
+
 protected:
     std::string** _matrix;
     int _rows;

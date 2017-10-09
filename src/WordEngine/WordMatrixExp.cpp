@@ -49,3 +49,37 @@ WordMatrixExp::~WordMatrixExp() {
     delete[] _matrix;
     _matrix = nullptr;
 }
+
+
+
+void WordMatrixExp::setValue(const string& value, int rowIndex, int colIndex) {
+
+    if(rowIndex < 0 || rowIndex >= _rows) {
+        throw runtime_error("WordMatrixExp::setValue(value, rowIndex, colIndex) : rowIndex out or range");
+    }
+
+    if(colIndex < 0 || colIndex >= _cols) {
+        throw runtime_error("WordMatrixExp::setValue(value, rowIndex, colIndex) : colIndex out or range");
+    }
+
+    if(_matrix != nullptr) {
+        _matrix[rowIndex][colIndex] = value;
+    }
+}
+
+string WordMatrixExp::getValue(int rowIndex, int colIndex) const {
+
+    if(rowIndex < 0 || rowIndex >= _rows) {
+        throw runtime_error("WordMatrixExp::getValue(rowIndex, colIndex) : rowIndex out or range");
+    }
+
+    if(colIndex < 0 || colIndex >= _cols) {
+        throw runtime_error("WordMatrixExp::getValue(rowIndex, colIndex) : colIndex out or range");
+    }
+
+    if(_matrix == nullptr) {
+        throw runtime_error("WordMatrixExp::getValue(rowIndex, colIndex) : inner data pointer is null");
+    }
+
+    return _matrix[rowIndex][colIndex];
+}

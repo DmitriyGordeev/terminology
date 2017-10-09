@@ -21,7 +21,7 @@ Node* Graph::search_r(const std::string& value, Node* start) {
         return nullptr;
     }
 
-    if(start->word == value) {
+    if(start->value == value) {
         return start;
     }
 

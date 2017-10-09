@@ -3,83 +3,37 @@
 
 using namespace std;
 
-WordMatrixExp::WordMatrixExp() {
+WordMatrixExp::WordMatrixExp() = default;
 
-    _matrix = nullptr;
-    _rows = 0;
-    _cols = 0;
-}
-
-WordMatrixExp::WordMatrixExp(int rows, int cols) {
+WordMatrixExp::WordMatrixExp(size_t rows, size_t cols) {
 
     if(rows < 0 || cols < 0)
         throw runtime_error("constructor WordMatrixExp(size_t rows, size_t cols) has negative parameter(s)");
 
-    _rows = rows;
-    _cols = cols;
-    _matrix = new string*[_rows];
-    for(size_t i = 0; i < _cols; i++) {
-        _matrix[i] = new string[_cols];
-    }
+    _data.reserve(rows);
+    for(auto v : _data)
+        v.reserve(cols);
 }
 
 WordMatrixExp::WordMatrixExp(const WordMatrixExp& object) {
-
-    _rows = object._rows;
-    _cols = object._cols;
-
-    _matrix = new string*[_rows];
-    for(size_t i = 0; i < _cols; i++) {
-        _matrix[i] = new string[_cols];
-    }
-
-    for(int i = 0; i < _rows; i++)
-        for(int j = 0; j < _cols; j++)
-            _matrix[i][j] = object._matrix[i][j];
-
+    _data = object._data;
 }
 
-WordMatrixExp::~WordMatrixExp() {
+WordMatrixExp::~WordMatrixExp() = default;
 
-    for(size_t i = 0; i < _rows; i++) {
-        delete[] _matrix[i];
-        _matrix[i] = nullptr;
-    }
 
-    delete[] _matrix;
-    _matrix = nullptr;
+
+void WordMatrixExp::setValue(const string& value, size_t rowIndex, size_t colIndex) {
+
+    vector<string>& row_ref = _data.at(rowIndex);
+    string& element_ref = row_ref.at(colIndex);
+    element_ref = value;
 }
 
+string WordMatrixExp::getValue(size_t rowIndex, size_t colIndex) const {
 
-
-void WordMatrixExp::setValue(const string& value, int rowIndex, int colIndex) {
-
-    if(rowIndex < 0 || rowIndex >= _rows) {
-        throw runtime_error("WordMatrixExp::setValue(value, rowIndex, colIndex) : rowIndex out or range");
-    }
-
-    if(colIndex < 0 || colIndex >= _cols) {
-        throw runtime_error("WordMatrixExp::setValue(value, rowIndex, colIndex) : colIndex out or range");
-    }
-
-    if(_matrix != nullptr) {
-        _matrix[rowIndex][colIndex] = value;
-    }
+    const vector<string>& row = _data.at(rowIndex);
+    const string& element = row.at(colIndex);
+    return element;
 }
 
-string WordMatrixExp::getValue(int rowIndex, int colIndex) const {
-
-    if(rowIndex < 0 || rowIndex >= _rows) {
-        throw runtime_error("WordMatrixExp::getValue(rowIndex, colIndex) : rowIndex out or range");
-    }
-
-    if(colIndex < 0 || colIndex >= _cols) {
-        throw runtime_error("WordMatrixExp::getValue(rowIndex, colIndex) : colIndex out or range");
-    }
-
-    if(_matrix == nullptr) {
-        throw runtime_error("WordMatrixExp::getValue(rowIndex, colIndex) : inner data pointer is null");
-    }
-
-    return _matrix[rowIndex][colIndex];
-}

@@ -25,9 +25,15 @@ Node* Graph::search_r(const std::string& value, Node* start) {
         return start;
     }
 
+    if(start->siblings.empty()) {
+        return nullptr;
+    }
+
     for(auto itr : start->siblings) {
-        if(search_r(value, itr)) {
-            break;
+        Node* r = search_r(value, itr);
+        if(r) {
+            if(r->value == value)
+                return r;
         }
     }
 }

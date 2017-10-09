@@ -22,7 +22,7 @@ set(WORD_MATRIX_CLASS_SOURCE
 set(SOURCE_FILES src/main.cpp
         ${FILEIO_SOURCE}
         ${WIKI_PAGE_PARSER_SOURCE}
-        ${WORD_MATRIX_CLASS_SOURCE})
+        ${WORD_MATRIX_CLASS_SOURCE} src/WordEngine/MatrixCreator.cpp src/WordEngine/MatrixCreator.h)
 
 add_executable(Project ${SOURCE_FILES})
 target_link_libraries(Project

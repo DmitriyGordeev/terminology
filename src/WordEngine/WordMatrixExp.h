@@ -9,8 +9,6 @@ typedef std::vector<std::vector<std::string>> SMatrix;
 class WordMatrixExp
 {
 public:
-
-    // TODO: make test for all these methods:
     WordMatrixExp();
     WordMatrixExp(size_t rows, size_t cols);
     WordMatrixExp(const WordMatrixExp& object);
@@ -26,6 +24,7 @@ public:
         return _data[0].size();
     }
 
+    // TODO: make test for all these methods:
     void setValue(const std::string& value, size_t rowIndex, size_t colIndex);
     std::string getValue(size_t rowIndex, size_t colIndex) const;
 

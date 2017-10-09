@@ -1,10 +1,6 @@
 #include <iostream>
-#include <string>
-#include <restclient-cpp/connection.h>
-#include <restclient-cpp/restclient.h>
 
-#include "Fileio/Fileio.h"
-#include "WikiPageParser/WikiPageParser.h"
+#include "WordEngine/WordMatrixExp.h"
 
 using namespace std;
 
@@ -12,8 +8,6 @@ using namespace std;
 int main(int argc, char** argv) {
 
     system("mkdir -p resource");
-
-
 
     return 0;
 }

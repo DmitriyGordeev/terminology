@@ -7,13 +7,17 @@ class WordMatrixExp
 {
 public:
     WordMatrixExp();
-    WordMatrixExp(size_t rows, size_t cols);
+    WordMatrixExp(int rows, int cols);
+    WordMatrixExp(const WordMatrixExp& object);
     ~WordMatrixExp();
+
+    int rows() const { return _rows; }
+    int cols() const { return _cols; }
 
 protected:
     std::string** _matrix;
-    size_t _rows;
-    size_t _cols;
+    int _rows;
+    int _cols;
 
 private:
 

@@ -1,5 +1,4 @@
 #include "MatrixCreator.h"
-#include <map>
 using namespace std;
 
 /*
@@ -10,7 +9,10 @@ using namespace std;
  */
 
 
-WordMatrixExp MatrixCreator::makeAnalys(const string& text) {
+WordMatrixExp MatrixCreator::makeAnalysExp(const map<string, string>& data) {
+
+
+
 
 
 

@@ -46,6 +46,8 @@ TEST(test_InhGraph, test_search_r__returnsCorrectValue) {
     EXPECT_EQ(item, result->value);
 }
 
+// TODO: make different cases for Graph::test_search_r():
+
 int main(int argc, char** argv) {
 
     testing::InitGoogleTest(&argc, argv);

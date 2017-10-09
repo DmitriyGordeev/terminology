@@ -13,12 +13,6 @@ TEST(WordMatrixExp, constructorThrowsException) {
     catch(...) {}
 }
 
-TEST(WordMatrixExp, copyConstructorNotThrowsException) {
-
-    WordMatrixExp wordMatrixExp(5, 5);
-    WordMatrixExp anotherMatrix(wordMatrixExp);
-}
-
 
 
 int main(int argc, char** argv) {

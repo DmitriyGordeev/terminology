@@ -25,6 +25,9 @@ Node* Graph::search_r(const std::string& value, Node* start) {
         return start;
     }
 
-    for(auto itr : start->siblings)
-        return search_r(value, itr);
+    for(auto itr : start->siblings) {
+        if(search_r(value, itr)) {
+            break;
+        }
+    }
 }

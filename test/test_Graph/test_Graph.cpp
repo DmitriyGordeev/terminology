@@ -41,7 +41,7 @@ TEST(test_InhGraph, test_search_r__returnsCorrectValue) {
     nodes.push_back(node);
 
     string item = "C1_A2";
-    Node* result = graph.test_search_r(item, node);
+    Node* result = graph.test_search_r(item, nodes[0]);
     EXPECT_FALSE(result == nullptr);
     EXPECT_EQ(item, result->value);
 }

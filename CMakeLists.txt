@@ -3,8 +3,8 @@ project(Project)
 
 set(CMAKE_CXX_STANDARD 11)
 
-
-# project modules:
+# --------------------------------------------------------------------
+# project sources:
 set(FILEIO_SOURCE
         src/Fileio/Fileio.h
         src/Fileio/Fileio.cpp)
@@ -17,12 +17,17 @@ set(WORD_MATRIX_CLASS_SOURCE
         src/WordEngine/WordMatrixExp.h
         src/WordEngine/WordMatrixExp.cpp)
 
+set(GRAPH_CLASS_SOURCE
+        src/WordEngine/Graph.h
+        src/WordEngine/Graph.cpp)
 
+
+# --------------------------------------------------------------------
 # project:
 set(SOURCE_FILES src/main.cpp
         ${FILEIO_SOURCE}
-        ${WIKI_PAGE_PARSER_SOURCE}
-        ${WORD_MATRIX_CLASS_SOURCE} src/WordEngine/MatrixCreator.cpp src/WordEngine/MatrixCreator.h)
+        ${GRAPH_CLASS_SOURCE}
+        ${WIKI_PAGE_PARSER_SOURCE})
 
 add_executable(Project ${SOURCE_FILES})
 target_link_libraries(Project
@@ -48,11 +53,3 @@ set(FILEIO_TESTS
         test/test_Fileio/test_Fileio.cpp)
 add_executable(test_Fileio ${FILEIO_TESTS})
 target_link_libraries(test_Fileio ${GTEST_LIBS})
-
-
-# WordMatrixExp
-set(WORD_MATRIX_EXP_TESTS
-        ${WORD_MATRIX_CLASS_SOURCE}
-        test/test_WordMatrixExp/test_WordMatrixExp.cpp)
-add_executable(test_WordMatrixExp ${WORD_MATRIX_EXP_TESTS})
-target_link_libraries(test_WordMatrixExp ${GTEST_LIBS})

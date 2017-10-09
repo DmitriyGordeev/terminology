@@ -9,11 +9,4 @@ using namespace std;
  */
 
 
-WordMatrixExp MatrixCreator::makeAnalysExp(const map<string, string>& data) {
-
-
-
-
-
-
-}
+WordMatrixExp MatrixCreator::makeAnalysExp(const map<string, string>& data) {}

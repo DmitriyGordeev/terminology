@@ -1,3 +1,0 @@
-[submodule "test/lib/gmock"]
-	path = test/lib/gmock
-	url = https://github.com/povilasb/gmock.git

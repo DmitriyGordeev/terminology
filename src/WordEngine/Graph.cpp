@@ -35,6 +35,11 @@ Node* Graph::search(const std::string& value) {
 }
 
 
+Node* Graph::accept(Node* node,
+             const std::vector<std::string>& links) {
+
+}
+
 /* protected: */
 Node* Graph::search_r(const std::string& value, Node* start) {
 

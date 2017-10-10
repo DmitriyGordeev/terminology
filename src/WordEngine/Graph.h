@@ -30,6 +30,7 @@ public:
 
     Node* add(const std::string& value);
     Node* search(const std::string& value);
+    Node* accept(Node* node, const std::vector<std::string>& links);
 
     size_t size() const { return _size; }
 

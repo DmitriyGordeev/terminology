@@ -31,6 +31,8 @@ public:
     Node* add(const std::string& value);
     Node* search(const std::string& value);
 
+    size_t size() const { return _size; }
+
 protected:
     Node* search_r(const std::string& value, Node* start);
 

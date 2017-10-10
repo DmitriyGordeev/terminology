@@ -6,8 +6,18 @@ Graph::Graph() { _size = 0; }
 Graph::~Graph() = default;
 
 
-Node* Graph::add(const std::string& word) {
+Node* Graph::add(const std::string& value) {
 
+    Node* search_result = search(value);
+    if(search_result) {
+        return search_result;
+    }
+
+    // TODO: play with vector of raw pointers and vector of smart pointers
+    search_result = new Node(value);
+    _nodes.push_back(search_result);
+    _size++;
+    return search_result;
 }
 
 Node* Graph::search(const std::string& value) {
@@ -23,6 +33,7 @@ Node* Graph::search(const std::string& value) {
 
     return nullptr;
 }
+
 
 /* protected: */
 Node* Graph::search_r(const std::string& value, Node* start) {

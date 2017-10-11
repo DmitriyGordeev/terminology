@@ -11,7 +11,7 @@ public:
         return search_r(value, start);
     }
 
-    vector<unique_ptr<Node>>& nodes_ref() { return _nodes; }
+    vector<shared_ptr<Node>>& nodes_ref() { return _nodes; }
 };
 
 
@@ -39,7 +39,7 @@ TEST(test_InhGraph, test_search_r__returnsCorrectValue) {
 
     InhGraph graph;
     auto& nodes = graph.nodes_ref();
-    nodes.push_back(unique_ptr<Node>(node));
+    nodes.push_back(shared_ptr<Node>(node));
 
     string item = "C1_A2";
     Node* result = graph.test_search_r(item, nodes[0].get());
@@ -71,7 +71,7 @@ TEST(test_InhGraph, test_search_r__returnsNullptr) {
 
     InhGraph graph;
     auto& nodes = graph.nodes_ref();
-    nodes.push_back(unique_ptr<Node>(node));
+    nodes.push_back(shared_ptr<Node>(node));
 
     string item = "some not existing string";
     Node* result = graph.test_search_r(item, nodes[0].get());
@@ -84,7 +84,7 @@ TEST(test_InhGraph, test_search_r__returnsNullptrOnEmpty) {
 
     InhGraph graph;
     auto& nodes = graph.nodes_ref();
-    nodes.push_back(unique_ptr<Node>(node));
+    nodes.push_back(shared_ptr<Node>(node));
 
     string item = "some not existing string";
     Node* result = graph.test_search_r(item, nodes[0].get());
@@ -115,7 +115,7 @@ TEST(test_InhGraph, search_returnsCorrectValue) {
 
     InhGraph graph;
     auto& nodes = graph.nodes_ref();
-    nodes.push_back(unique_ptr<Node>(node));
+    nodes.push_back(shared_ptr<Node>(node));
 
     string item = "C1_A2";
     Node* result = graph.search(item);
@@ -147,7 +147,7 @@ TEST(test_InhGraph, search_returnsNullptr) {
 
     InhGraph graph;
     auto& nodes = graph.nodes_ref();
-    nodes.push_back(unique_ptr<Node>(node));
+    nodes.push_back(shared_ptr<Node>(node));
 
     string item = "some string";
     Node* result = graph.search(item);

@@ -15,13 +15,13 @@ struct Node
     Node(const std::string& value, const std::vector<Node*>& siblings) {
         this->value = value;
         for(auto p : siblings) {
-            this->siblings.push_back(std::unique_ptr<Node>(p));
+            this->siblings.push_back(std::shared_ptr<Node>(p));
         }
     }
 
 
     std::string value;
-    std::vector<std::unique_ptr<Node>> siblings;
+    std::vector<std::shared_ptr<Node>> siblings;
 };
 
 
@@ -40,7 +40,7 @@ public:
 protected:
     Node* search_r(const std::string& value, Node* start);
 
-    std::vector<std::unique_ptr<Node>> _nodes;
+    std::vector<std::shared_ptr<Node>> _nodes;
     size_t _size;
 
 private:

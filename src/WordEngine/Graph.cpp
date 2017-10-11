@@ -13,14 +13,14 @@ Node* Graph::add(const std::string& value) {
     }
 
     search_result = new Node(value);
-    _nodes.push_back(unique_ptr<Node>(search_result));
+    _nodes.push_back(shared_ptr<Node>(search_result));
     _size++;
     return search_result;
 }
 
 Node* Graph::search(const std::string& value) {
 
-    for(auto& itr : _nodes)
+    for(const auto& itr : _nodes)
     {
         Node* r = search_r(value, itr.get());
         if(r) {
@@ -67,7 +67,7 @@ Node* Graph::search_r(const std::string& value, Node* start) {
         return nullptr;
     }
 
-    for(auto& itr : start->siblings)
+    for(const auto& itr : start->siblings)
     {
         Node* r = search_r(value, itr.get());
         if(r) {

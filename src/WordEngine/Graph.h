@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <memory>
 
 struct Node
 {
@@ -13,12 +14,14 @@ struct Node
 
     Node(const std::string& value, const std::vector<Node*>& siblings) {
         this->value = value;
-        this->siblings = siblings;
+        for(auto p : siblings) {
+            this->siblings.push_back(std::unique_ptr<Node>(p));
+        }
     }
 
 
     std::string value;
-    std::vector<Node*> siblings;
+    std::vector<std::unique_ptr<Node>> siblings;
 };
 
 
@@ -37,7 +40,7 @@ public:
 protected:
     Node* search_r(const std::string& value, Node* start);
 
-    std::vector<Node*> _nodes;
+    std::vector<std::unique_ptr<Node>> _nodes;
     size_t _size;
 
 private:

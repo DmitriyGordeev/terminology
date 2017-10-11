@@ -32,10 +32,25 @@ Node* Graph::search(const std::string& value) {
     return nullptr;
 }
 
+Node* Graph::accept(const std::string& value, const std::vector<std::string>& links) {
 
-Node* Graph::accept(Node* node,
-             const std::vector<std::string>& links) {
+    Node* search_result = search(value);
+    if(search_result) {
+        for(const string& s : links) {
 
+            Node* link_search_result = search(s);
+            if(link_search_result) {
+
+            }
+        }
+    }
+    else {
+
+
+
+    }
+
+    return search_result;
 }
 
 Node* Graph::search_r(const std::string& value, Node* start) {

@@ -2,23 +2,34 @@
 #include "WordEngine/Graph.h"
 using namespace std;
 
+struct Object {
+    Object(double d) { this->d = d; }
+    ~Object() { cout << "Object destructor" << endl; }
+    double d;
+};
 
-void play_unique_ptr() {
-    unique_ptr<double> u_ptr(new double(5.01));
-    double* ptr = u_ptr.get();
-    unique_ptr<double> other_u_ptr(ptr);
-}
-
-
-void play_shared_ptr() {
-    shared_ptr<double> s_ptr(new double(5.01));
-    double* ptr = s_ptr.get();
-    shared_ptr<double> other_s_ptr(ptr);
-}
-
+struct CheckObject {
+    CheckObject() {}
+    ~CheckObject() { cout << "Check destructor" << endl; }
+};
 
 int main(int argc, char** argv) {
 
-    play_unique_ptr();
+    shared_ptr<Object> s_ptr_1(new Object(0.01));
+    shared_ptr<Object> s_ptr_2(new Object(0.02));
+    shared_ptr<Object> s_ptr_3(new Object(0.03));
+
+    vector<shared_ptr<Object>> v1;
+    v1.push_back(s_ptr_1);
+    v1.push_back(s_ptr_2);
+    v1.push_back(s_ptr_3);
+
+    CheckObject co;
+
+    vector<shared_ptr<Object>> v2;
+    v2.push_back(s_ptr_1);
+    v2.push_back(s_ptr_2);
+    v2.push_back(s_ptr_3);
+
     return 0;
 }

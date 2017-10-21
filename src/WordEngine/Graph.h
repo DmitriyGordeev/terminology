@@ -5,19 +5,36 @@
 #include <vector>
 #include <iostream>
 
+struct Edge;
 struct Node
 {
     explicit Node(const std::string& value) {
         this->value = value;
     }
-    Node(const std::string& value, const std::vector<Node*>& siblings) {
 
-        this->value = value;
-        this->siblings = siblings;
+    ~Node() {
+        for(auto e : edges) {
+            delete e;
+            e = nullptr;
+        }
+        std::cout << "Node::destructed - value = " << value << std::endl;
     }
 
     std::string value;
-    std::vector<Node*> siblings;
+    std::vector<Edge*> edges;
+};
+
+struct Edge
+{
+    Edge() = default;
+    ~Edge() {
+        for(auto e : nodes) {
+            delete e;
+            e = nullptr;
+        }
+        std::cout << "Edge::destructed" << std::endl;
+    }
+    std::vector<Node*> nodes;
 };
 
 

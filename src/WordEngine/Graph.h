@@ -10,12 +10,11 @@ struct Node
     explicit Node(const std::string& value) {
         this->value = value;
     }
-
     Node(const std::string& value, const std::vector<Node*>& siblings) {
+
         this->value = value;
         this->siblings = siblings;
     }
-
 
     std::string value;
     std::vector<Node*> siblings;

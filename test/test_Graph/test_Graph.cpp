@@ -207,35 +207,6 @@ TEST(test_InhGraph, add_doesNotAddsDuplicate) {
 }
 
 
-struct Object
-{
-    explicit Object(const string& s) { this->s = s; }
-    ~Object() { cout << "destructor" << endl; }
-
-    string s;
-    vector<shared_ptr<Object>> nodes;
-};
-
-
-TEST(Core, vector_ptr_destructors) {
-
-    vector<shared_ptr<Object>> v_ptr;
-    v_ptr.push_back(make_shared<Object>("One"));
-    v_ptr.push_back(make_shared<Object>("Two"));
-    v_ptr.push_back(make_shared<Object>("Three"));
-
-    v_ptr[1]->nodes.push_back(make_shared<Object>("Two.FirstChild"));
-    v_ptr[1]->nodes[0]->nodes.push_back(v_ptr[0]);
-
-    v_ptr[0]->nodes.push_back(make_shared<Object>("One.FirstChild"));
-    v_ptr[0]->nodes[0]->nodes.push_back(v_ptr[1]);
-
-    v_ptr[2]->nodes.push_back(make_shared<Object>("Three.FirstChild"));
-    v_ptr[2]->nodes[0]->nodes.push_back(v_ptr[2]);
-
-    cout << "connections set up" << endl;
-}
-
 int main(int argc, char** argv) {
 
     testing::InitGoogleTest(&argc, argv);

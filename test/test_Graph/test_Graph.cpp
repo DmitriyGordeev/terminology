@@ -211,14 +211,19 @@ TEST(VectorPointers, cyclingReference) {
 
     Node* A = new Node("A");
     Node* B = new Node("B");
+    Node* C = new Node("C");
 
     Edge* A_B = new Edge();
     A_B->nodes.insert(B);
+
+    Edge* A_C = new Edge();
+    A_C->nodes.insert(C);
 
     Edge* B_A = new Edge();
     B_A->nodes.insert(A);
 
     A->edges.push_back(A_B);
+    A->edges.push_back(A_C);
     B->edges.push_back(B_A);
 
 
@@ -226,12 +231,16 @@ TEST(VectorPointers, cyclingReference) {
     A_B->nodes.erase(B);
     B->edges.clear();
     B_A->nodes.clear();
+    A_C->nodes.clear();
 
-    auto itr = std::find(A->edges.begin(), A->edges.end(), A_B);
-    A->edges.erase(itr);
+//    auto itr = std::find(A->edges.begin(), A->edges.end(), A_B);
+//    A->edges.erase(itr);
+    A->edges.clear();
 
     delete B_A; B_A = nullptr;
     delete A_B; A_B = nullptr;
+    delete A_C; A_C = nullptr;
+    delete C; C = nullptr;
     delete B; B = nullptr;
     delete A; A = nullptr;
 

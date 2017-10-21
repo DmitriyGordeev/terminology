@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <algorithm>
 #include <gtest/gtest.h>
 
 #include "../../src/WordEngine/Graph.h"
@@ -222,11 +223,12 @@ TEST(VectorPointers, cyclingReference) {
 
 
     // remove occurence of B:
-    A_B->nodes.clear(); // not clear but find and remove
+    A_B->nodes.erase(B);
     B->edges.clear();
     B_A->nodes.clear();
-    A->edges.clear();   // not clear but find and remove
 
+    auto itr = std::find(A->edges.begin(), A->edges.end(), A_B);
+    A->edges.erase(itr);
 
     delete B_A; B_A = nullptr;
     delete A_B; A_B = nullptr;

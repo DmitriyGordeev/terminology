@@ -212,18 +212,26 @@ TEST(VectorPointers, cyclingReference) {
     Node* B = new Node("B");
 
     Edge* A_B = new Edge();
-    A_B->nodes.push_back(B);
+    A_B->nodes.insert(B);
 
     Edge* B_A = new Edge();
-    B_A->nodes.push_back(A);
+    B_A->nodes.insert(A);
 
     A->edges.push_back(A_B);
     B->edges.push_back(B_A);
 
-    delete B_A;
-    delete A_B;
-    delete B;
-    delete A;
+
+    // remove occurence of B:
+    A_B->nodes.clear(); // not clear but find and remove
+    B->edges.clear();
+    B_A->nodes.clear();
+    A->edges.clear();   // not clear but find and remove
+
+
+    delete B_A; B_A = nullptr;
+    delete A_B; A_B = nullptr;
+    delete B; B = nullptr;
+    delete A; A = nullptr;
 
 }
 

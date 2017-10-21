@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <set>
 
 struct Edge;
 struct Node
@@ -34,7 +35,7 @@ struct Edge
         }
         std::cout << "Edge::destructed" << std::endl;
     }
-    std::vector<Node*> nodes;
+    std::set<Node*> nodes;
 };
 
 

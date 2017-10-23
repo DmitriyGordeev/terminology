@@ -24,8 +24,7 @@ Graph::Graph() { _size = 0; }
 Graph::~Graph() = default;
 
 
-
-//Node* Graph::add(const std::string& value) {
+//shared_ptr<Node> Graph::add(const std::string& value) {
 //
 //    Node* search_result = search(value);
 //    if(search_result) {
@@ -38,20 +37,21 @@ Graph::~Graph() = default;
 //    _size++;
 //    return search_result;
 //}
-//
-//Node* Graph::search(const std::string& value) {
-//
-//    for(auto itr : _nodes)
-//    {
-//        Node* r = search_r(value, itr);
-//        if(r) {
-//            if(r->value == value)
-//                return r;
-//        }
-//    }
-//
-//    return nullptr;
-//}
+
+shared_ptr<Node> Graph::search(const std::string& value) {
+
+    for(auto itr : _nodes)
+    {
+        auto r = search_r(value, itr);
+        if(r) {
+            if(r->value == value)
+                return r;
+        }
+    }
+
+    return nullptr;
+}
+
 //
 //
 //Node* Graph::accept(Node* node,
@@ -59,29 +59,37 @@ Graph::~Graph() = default;
 //
 //}
 //
-///* protected: */
-//Node* Graph::search_r(const std::string& value, Node* start) {
-//
-//    if(!start) {
-//        return nullptr;
-//    }
-//
-//    if(start->value == value) {
-//        return start;
-//    }
-//
-//    if(start->edges.empty()) {
-//        return nullptr;
-//    }
-//
-//    for(auto e : start->edges)
-//    {
-//        Node* r = search_r(value, e);
-//        if(r) {
-//            if(r->value == value)
-//                return r;
-//        }
-//    }
-//
-//    return nullptr;
-//}
+/* protected: */
+shared_ptr<Node> Graph::search_r(const std::string& value,
+                                 const shared_ptr<Node>& start) {
+
+    if(!start) {
+        return nullptr;
+    }
+
+    if(start->value == value) {
+        return start;
+    }
+
+    if(start->sp_nodes.empty() && start->wp_nodes.empty()) {
+        return nullptr;
+    }
+
+    for(const auto& e : start->sp_nodes) {
+        auto r = search_r(value, e);
+        if(r) {
+            if(r->value == value)
+                return r;
+        }
+    }
+
+    for(const auto& e : start->wp_nodes) {
+        auto r = search_r(value, e.lock());
+        if(r) {
+            if(r->value == value)
+                return r;
+        }
+    }
+
+    return nullptr;
+}

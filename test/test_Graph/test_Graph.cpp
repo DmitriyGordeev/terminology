@@ -122,11 +122,20 @@ TEST(TestGraph, search_returnsNullptr) {
 
 TEST(TestGraph, add_returnsCorrectValueOnEmpty) {
 
-
+    TestGraph graph;
+    auto s = graph.add("A");
+    EXPECT_FALSE(s == nullptr);
+    EXPECT_EQ(s->value, "A");
+    EXPECT_EQ(graph.size(), 1);
 }
 
 TEST(TestGraph, add_doesNotAddsDuplicate) {
 
+    TestGraph graph;
+    auto s1 = graph.add("A");
+    auto s2 = graph.add("A");
+    EXPECT_EQ(s1, s2);
+    EXPECT_EQ(graph.size(), 1);
 
 }
 

@@ -13,9 +13,7 @@ struct Node
         this->value = value;
     }
 
-    ~Node() {
-        std::cout << "Node::destructed - value = " << value << std::endl;
-    }
+    ~Node() {}
 
     void connect(const std::shared_ptr<Node>& other);
 

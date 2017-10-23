@@ -24,19 +24,18 @@ Graph::Graph() { _size = 0; }
 Graph::~Graph() = default;
 
 
-//shared_ptr<Node> Graph::add(const std::string& value) {
-//
-//    Node* search_result = search(value);
-//    if(search_result) {
-//        return search_result;
-//    }
-//
-//    // TODO: play with vector of raw pointers and vector of smart pointers
-//    search_result = new Node(value);
-//    _nodes.push_back(search_result);
-//    _size++;
-//    return search_result;
-//}
+shared_ptr<Node> Graph::add(const std::string& value) {
+
+    shared_ptr<Node> search_result = search(value);
+    if(search_result) {
+        return search_result;
+    }
+
+    search_result = make_shared<Node>(value);
+    _nodes.push_back(search_result);
+    _size++;
+    return search_result;
+}
 
 shared_ptr<Node> Graph::search(const std::string& value) {
 

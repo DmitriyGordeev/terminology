@@ -1,9 +1,28 @@
 #include "Graph.h"
+#include <algorithm>
 
 using namespace std;
 
+void Node::connect(const shared_ptr<Node>& p_node) {
+
+    auto itr = find_if(p_node->sp_nodes.begin(),
+                       p_node->sp_nodes.end(),
+                       [this](const shared_ptr<Node>& p)
+                       {
+                           return (p.get() == this);
+                       });
+
+    if(itr != p_node->sp_nodes.end()) {
+        wp_nodes.push_back(shared_ptr<Node>(p_node));
+    }
+    else {
+        sp_nodes.push_back(p_node);
+    }
+}
+
 Graph::Graph() { _size = 0; }
 Graph::~Graph() = default;
+
 
 
 //Node* Graph::add(const std::string& value) {
@@ -51,13 +70,13 @@ Graph::~Graph() = default;
 //        return start;
 //    }
 //
-//    if(start->siblings.empty()) {
+//    if(start->edges.empty()) {
 //        return nullptr;
 //    }
 //
-//    for(auto itr : start->siblings)
+//    for(auto e : start->edges)
 //    {
-//        Node* r = search_r(value, itr);
+//        Node* r = search_r(value, e);
 //        if(r) {
 //            if(r->value == value)
 //                return r;

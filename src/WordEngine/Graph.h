@@ -3,10 +3,10 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include <iostream>
 #include <set>
 
-struct Edge;
 struct Node
 {
     explicit Node(const std::string& value) {
@@ -14,28 +14,14 @@ struct Node
     }
 
     ~Node() {
-        for(auto e : edges) {
-            delete e;
-            e = nullptr;
-        }
         std::cout << "Node::destructed - value = " << value << std::endl;
     }
 
-    std::string value;
-    std::vector<Edge*> edges;
-};
+    void connect(const std::shared_ptr<Node>& other);
 
-struct Edge
-{
-    Edge() = default;
-    ~Edge() {
-        for(auto e : nodes) {
-            delete e;
-            e = nullptr;
-        }
-        std::cout << "Edge::destructed" << std::endl;
-    }
-    std::set<Node*> nodes;
+    std::string value;
+    std::vector<std::shared_ptr<Node>> sp_nodes;
+    std::vector<std::weak_ptr<Node>> wp_nodes;
 };
 
 
@@ -54,7 +40,7 @@ public:
 protected:
     Node* search_r(const std::string& value, Node* start);
 
-    std::vector<Node*> _nodes;
+    std::vector<std::shared_ptr<Node>> _nodes;
     size_t _size;
 
 private:

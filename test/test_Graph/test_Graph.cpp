@@ -7,14 +7,6 @@
 
 using namespace std;
 
-class InhGraph: public Graph {
-public:
-    Node* test_search_r(const string& value, Node* start) {
-        return search_r(value, start);
-    }
-
-    vector<Node*>& nodes_ref() { return _nodes; }
-};
 
 
 
@@ -209,40 +201,18 @@ public:
 
 TEST(VectorPointers, cyclingReference) {
 
-    Node* A = new Node("A");
-    Node* B = new Node("B");
-    Node* C = new Node("C");
+    shared_ptr<Node> a = make_shared<Node>("A");
+    shared_ptr<Node> b = make_shared<Node>("B");
+    shared_ptr<Node> c = make_shared<Node>("C");
 
-    Edge* A_B = new Edge();
-    A_B->nodes.insert(B);
+    a->connect(b);
+    a->connect(c);
 
-    Edge* A_C = new Edge();
-    A_C->nodes.insert(C);
+    b->connect(a);
+    b->connect(c);
 
-    Edge* B_A = new Edge();
-    B_A->nodes.insert(A);
-
-    A->edges.push_back(A_B);
-    A->edges.push_back(A_C);
-    B->edges.push_back(B_A);
-
-
-    // remove occurence of B:
-    A_B->nodes.erase(B);
-    B->edges.clear();
-    B_A->nodes.clear();
-    A_C->nodes.clear();
-
-//    auto itr = std::find(A->edges.begin(), A->edges.end(), A_B);
-//    A->edges.erase(itr);
-    A->edges.clear();
-
-    delete B_A; B_A = nullptr;
-    delete A_B; A_B = nullptr;
-    delete A_C; A_C = nullptr;
-    delete C; C = nullptr;
-    delete B; B = nullptr;
-    delete A; A = nullptr;
+    c->connect(a);
+    c->connect(b);
 
 }
 

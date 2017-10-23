@@ -139,8 +139,40 @@ TEST(TestGraph, add_doesNotAddsDuplicate) {
 
 }
 
+TEST(TestGraph, add_withLinks_Empty) {
 
+    TestGraph graph;
+    auto a = graph.add("A", vector<string> { "B", "C" });
 
+    EXPECT_FALSE(a == nullptr);
+    EXPECT_EQ("A", a->value);
+
+    auto b = graph.search("B");
+    EXPECT_FALSE(b == nullptr);
+    EXPECT_EQ("B", b->value);
+
+    auto c = graph.search("C");
+    EXPECT_FALSE(c == nullptr);
+    EXPECT_EQ("C", c->value);
+
+    EXPECT_EQ(3, graph.size());
+}
+
+TEST(TestGraph, add_withLinks_SmthAlreadyExists) {
+
+    TestGraph graph;
+    graph.add("C");
+    auto a = graph.add("A", vector<string> { "B", "C" });
+
+    EXPECT_FALSE(a == nullptr);
+    EXPECT_EQ("A", a->value);
+
+    auto b = graph.search("B");
+    EXPECT_FALSE(b == nullptr);
+    EXPECT_EQ("B", b->value);
+
+    EXPECT_EQ(3, graph.size());
+}
 
 
 int main(int argc, char** argv) {

@@ -30,8 +30,10 @@ public:
     ~Graph();
 
     std::shared_ptr<Node> add(const std::string& value);
+    std::shared_ptr<Node> add(const std::string& value, const std::vector<std::string>& links);
     std::shared_ptr<Node> search(const std::string& value);
-    Node* accept(Node* node, const std::vector<std::string>& links);
+
+    int areConnected(const std::string& A, const std::string& B);
 
     size_t size() const { return _size; }
 

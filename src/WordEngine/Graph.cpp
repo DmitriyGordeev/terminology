@@ -37,6 +37,30 @@ shared_ptr<Node> Graph::add(const std::string& value) {
     return search_result;
 }
 
+std::shared_ptr<Node> Graph::add(const std::string& value, const std::vector<std::string>& links) {
+
+    shared_ptr<Node> search_result = search(value);
+    if(search_result) {
+
+        for(const auto& s : links) {
+            auto p = add(s);
+            search_result->connect(p);
+        }
+    }
+    else {
+        search_result = make_shared<Node>(value);
+        _nodes.push_back(search_result);
+        _size++;
+
+        for(const auto& s : links) {
+            auto p = add(s);
+            search_result->connect(p);
+        }
+    }
+
+    return search_result;
+}
+
 shared_ptr<Node> Graph::search(const std::string& value) {
 
     for(auto itr : _nodes)
@@ -51,13 +75,11 @@ shared_ptr<Node> Graph::search(const std::string& value) {
     return nullptr;
 }
 
-//
-//
-//Node* Graph::accept(Node* node,
-//             const std::vector<std::string>& links) {
-//
-//}
-//
+int areConnected(const std::string& A, const std::string& B) {
+    // TODO: write a definition for this method
+    return true;
+}
+
 /* protected: */
 shared_ptr<Node> Graph::search_r(const std::string& value,
                                  const shared_ptr<Node>& start) {

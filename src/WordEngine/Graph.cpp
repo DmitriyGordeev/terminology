@@ -19,6 +19,35 @@ void Node::connect(const shared_ptr<Node>& p_node) {
         sp_nodes.push_back(p_node);
     }
 }
+std::shared_ptr<Node> Node::find_sp(const std::string& value) {
+
+    auto sp_itr = find_if(sp_nodes.begin(),
+                       sp_nodes.end(),
+                       [value](const shared_ptr<Node>& p)
+                       {
+                           return (p->value == value);
+                       });
+
+    if(sp_itr != sp_nodes.end()) {
+        return *sp_itr;
+    }
+
+    return nullptr;
+}
+std::shared_ptr<Node> Node::find_wp(const std::string& value) {
+
+    auto wp_itr = find_if(wp_nodes.begin(),
+                          wp_nodes.end(),
+                          [value](const weak_ptr<Node>& p) {
+                              return (p.lock()->value == value);
+                          });
+
+    if(wp_itr != wp_nodes.end()) {
+        return (*wp_itr).lock();
+    }
+
+    return nullptr;
+}
 
 Graph::Graph() { _size = 0; }
 Graph::~Graph() = default;
@@ -75,15 +104,27 @@ shared_ptr<Node> Graph::search(const std::string& value) {
     return nullptr;
 }
 
-int areConnected(const std::string& A, const std::string& B) {
+EdgeType Graph::areConnected(const std::string& A, const std::string& B) {
+
+    auto sp_A = search(A);
+    auto sp_B = search(B);
+
+    if(sp_A == nullptr && sp_B == nullptr) {
+        return EdgeType::NF;
+    }
+
+    if(sp_A == nullptr) {
+        return EdgeType::FIRST_NF;
+    }
+
+    if(sp_B == nullptr) {
+        return EdgeType::SECOND_NF;
+    }
 
 
 
 
-
-
-
-    return true;
+    return EdgeType::DOUBLE_F;
 }
 
 /* protected: */

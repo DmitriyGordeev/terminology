@@ -39,6 +39,60 @@ TEST(Node, cycledReference) {
 
 }
 
+TEST(Node, find_sp_NotNull) {
+
+    shared_ptr<Node> a = make_shared<Node>("A");
+    shared_ptr<Node> b = make_shared<Node>("B");
+    shared_ptr<Node> c = make_shared<Node>("C");
+
+    a->connect(b);
+    a->connect(c);
+
+    b->connect(a);
+    b->connect(c);
+
+    c->connect(a);
+    c->connect(b);
+
+    auto fb = a->find_sp("B");
+    EXPECT_FALSE(fb == nullptr);
+    EXPECT_EQ("B", fb->value);
+}
+
+TEST(Node, find_sp_Nullptr) {
+
+    shared_ptr<Node> a = make_shared<Node>("A");
+    auto fb = a->find_sp("B");
+    EXPECT_TRUE(fb == nullptr);
+}
+
+TEST(Node, find_wp_NotNull) {
+
+    shared_ptr<Node> a = make_shared<Node>("A");
+    shared_ptr<Node> b = make_shared<Node>("B");
+    shared_ptr<Node> c = make_shared<Node>("C");
+
+    a->connect(b);
+    a->connect(c);
+
+    b->connect(a);
+    b->connect(c);
+
+    c->connect(a);
+    c->connect(b);
+
+    auto fa = b->find_wp("A");
+    EXPECT_FALSE(fa == nullptr);
+    EXPECT_EQ("A", fa->value);
+}
+
+TEST(Node, find_wp_Nullptr) {
+
+    shared_ptr<Node> a = make_shared<Node>("A");
+    auto fb = a->find_wp("B");
+    EXPECT_TRUE(fb == nullptr);
+}
+
 
 
 TEST(TestGraph, search_r__returnsCorrectValue) {

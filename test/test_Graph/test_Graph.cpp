@@ -21,7 +21,8 @@ public:
 };
 
 
-TEST(VectorPointers, cyclingReference) {
+
+TEST(Node, cycledReference) {
 
     shared_ptr<Node> a = make_shared<Node>("A");
     shared_ptr<Node> b = make_shared<Node>("B");
@@ -173,6 +174,7 @@ TEST(TestGraph, add_withLinks_SmthAlreadyExists) {
 
     EXPECT_EQ(3, graph.size());
 }
+
 
 
 int main(int argc, char** argv) {

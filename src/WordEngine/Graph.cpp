@@ -76,7 +76,13 @@ shared_ptr<Node> Graph::search(const std::string& value) {
 }
 
 int areConnected(const std::string& A, const std::string& B) {
-    // TODO: write a definition for this method
+
+
+
+
+
+
+
     return true;
 }
 

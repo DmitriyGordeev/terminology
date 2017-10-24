@@ -53,8 +53,8 @@ public:
     size_t size() const { return _size; }
 
 protected:
-    std::shared_ptr<Node> search_r(const std::string& value,
-                                   const std::shared_ptr<Node>& start);
+    std::shared_ptr<Node> search_r(const std::string &value,
+                                   std::shared_ptr<Node> start);
 
     std::vector<std::shared_ptr<Node>> _nodes;
     size_t _size;

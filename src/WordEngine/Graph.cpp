@@ -142,8 +142,8 @@ EdgeType Graph::areConnected(const std::string& A, const std::string& B) {
 }
 
 /* protected: */
-shared_ptr<Node> Graph::search_r(const std::string& value,
-                                 const shared_ptr<Node>& start) {
+shared_ptr<Node> Graph::search_r(const std::string &value,
+                                 shared_ptr<Node> start) {
 
     if(!start) {
         return nullptr;
@@ -153,7 +153,7 @@ shared_ptr<Node> Graph::search_r(const std::string& value,
         return start;
     }
 
-    if(start->sp_nodes.empty() && start->wp_nodes.empty()) {
+    if(start->sp_nodes.empty() /* && start->wp_nodes.empty() */) {
         return nullptr;
     }
 
@@ -165,13 +165,13 @@ shared_ptr<Node> Graph::search_r(const std::string& value,
         }
     }
 
-    for(const auto& e : start->wp_nodes) {
-        auto r = search_r(value, e.lock());
-        if(r) {
-            if(r->value == value)
-                return r;
-        }
-    }
+//    for(const auto& e : start->wp_nodes) {
+//        auto r = search_r(value, e.lock());
+//        if(r) {
+//            if(r->value == value)
+//                return r;
+//        }
+//    }
 
     return nullptr;
 }

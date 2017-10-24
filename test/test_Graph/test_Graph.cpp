@@ -253,18 +253,19 @@ TEST(TestGraph, areConnected) {
     TestGraph graph;
     auto a = graph.add("A");
     auto b = graph.add("B");
-    auto c = graph.add("F");
+    auto c = graph.add("C");
 
     a->connect(b);
     a->connect(c);
     b->connect(a);
 
-    // EXPECT_EQ(EdgeType::DOUBLE_F, graph.areConnected("A", "B"));
-    // EXPECT_EQ(EdgeType::DIRECT, graph.areConnected("A", "C"));
+    EXPECT_EQ(EdgeType::DOUBLE_F, graph.areConnected("A", "B"));
+    EXPECT_EQ(EdgeType::DIRECT, graph.areConnected("A", "C"));
+    EXPECT_EQ(EdgeType::REVERSE, graph.areConnected("C", "A"));
+    EXPECT_EQ(EdgeType::FIRST_NF, graph.areConnected("X", "A"));
+    EXPECT_EQ(EdgeType::SECOND_NF, graph.areConnected("C", "X"));
 
-    auto sc = graph.test_search_r("F", a);
-    EXPECT_FALSE(sc == nullptr);
-    EXPECT_EQ("F", sc->value);
+
 }
 
 

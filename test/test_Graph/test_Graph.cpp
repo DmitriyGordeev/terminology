@@ -173,8 +173,25 @@ TEST(TestGraph, search_returnsNullptr) {
     EXPECT_TRUE(graph.search("D") == nullptr);
 }
 
+TEST(TestGraph, search_existedInRoot) {
+
+    TestGraph graph;
+    auto a = graph.add("A");
+    auto b = graph.add("B");
+    auto c = graph.add("C");
+
+    auto sc = graph.search("C");
+    EXPECT_FALSE(sc == nullptr);
+    EXPECT_EQ("C", sc->value);
+
+    a->connect(c);
+    auto ssc = graph.search("C");
+    EXPECT_FALSE(ssc == nullptr);
+    EXPECT_EQ("C", ssc->value);
+}
 
 
+/* add method */
 TEST(TestGraph, add_returnsCorrectValueOnEmpty) {
 
     TestGraph graph;
@@ -227,6 +244,27 @@ TEST(TestGraph, add_withLinks_SmthAlreadyExists) {
     EXPECT_EQ("B", b->value);
 
     EXPECT_EQ(3, graph.size());
+}
+
+
+/* areConnected method: */
+TEST(TestGraph, areConnected) {
+
+    TestGraph graph;
+    auto a = graph.add("A");
+    auto b = graph.add("B");
+    auto c = graph.add("F");
+
+    a->connect(b);
+    a->connect(c);
+    b->connect(a);
+
+    // EXPECT_EQ(EdgeType::DOUBLE_F, graph.areConnected("A", "B"));
+    // EXPECT_EQ(EdgeType::DIRECT, graph.areConnected("A", "C"));
+
+    auto sc = graph.test_search_r("F", a);
+    EXPECT_FALSE(sc == nullptr);
+    EXPECT_EQ("F", sc->value);
 }
 
 

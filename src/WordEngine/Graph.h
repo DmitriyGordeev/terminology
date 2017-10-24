@@ -12,7 +12,7 @@ enum EdgeType {
     DIRECT,      // the first is connected to the second
     REVERSE,     // the second is connected to the first
     DOUBLE_F,    // both have a connection to each other, but the first dominates  (shared_ptr vs weak_ptr)
-    DOUBLE_S,    // both have a connection to each other, but the second dominates (shared_ptr vs weak_ptr)
+    DOUBLE_S,    // both have a connection to each other, but the second dominates (weak_ptr vs shared_ptr)
     FIRST_NF,    // first node is not found inside a Graph
     SECOND_NF,   // second node is not found inside a Graph
     NF           // both are not found inside a Graph

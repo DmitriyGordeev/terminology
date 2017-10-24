@@ -92,7 +92,7 @@ std::shared_ptr<Node> Graph::add(const std::string& value, const std::vector<std
 
 shared_ptr<Node> Graph::search(const std::string& value) {
 
-    for(auto itr : _nodes)
+    for(const auto& itr : _nodes)
     {
         auto r = search_r(value, itr);
         if(r) {
@@ -122,9 +122,23 @@ EdgeType Graph::areConnected(const std::string& A, const std::string& B) {
     }
 
 
+    if(sp_A->find_sp(B)) {
+        if(sp_B->find_wp(A)) {
+            return EdgeType::DOUBLE_F;
+        } else
+            return EdgeType::DIRECT;
+    }
+    else if(sp_A->find_wp(B)) {
+        return EdgeType::DOUBLE_S;
+    }
 
 
-    return EdgeType::DOUBLE_F;
+    if(sp_B->find_sp(A)) {
+        return EdgeType::REVERSE;
+    }
+    else
+        return EdgeType::NOT_CONNECTED;
+
 }
 
 /* protected: */

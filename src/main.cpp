@@ -4,7 +4,14 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-    string text = "A -> B, C, I";
+    Graph graph;
+    graph.add("Юпитер", vector<string> {
+            "Солнце",
+            "Планета",
+            "Космос"
+    } );
+
+
 
     return 0;
 }

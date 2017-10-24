@@ -13,10 +13,6 @@ set(WIKI_PAGE_PARSER_SOURCE
         src/WikiPageParser/WikiPageParser.h
         src/WikiPageParser/WikiPageParser.cpp)
 
-set(WORD_MATRIX_CLASS_SOURCE
-        src/WordEngine/WordMatrixExp.h
-        src/WordEngine/WordMatrixExp.cpp)
-
 set(GRAPH_SOURCE
         src/WordEngine/Graph.h
         src/WordEngine/Graph.cpp)

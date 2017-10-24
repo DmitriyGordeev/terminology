@@ -260,10 +260,13 @@ TEST(TestGraph, areConnected) {
     b->connect(a);
 
     EXPECT_EQ(EdgeType::DOUBLE_F, graph.areConnected("A", "B"));
+    EXPECT_EQ(EdgeType::DOUBLE_S, graph.areConnected("B", "A"));
     EXPECT_EQ(EdgeType::DIRECT, graph.areConnected("A", "C"));
     EXPECT_EQ(EdgeType::REVERSE, graph.areConnected("C", "A"));
     EXPECT_EQ(EdgeType::FIRST_NF, graph.areConnected("X", "A"));
     EXPECT_EQ(EdgeType::SECOND_NF, graph.areConnected("C", "X"));
+    EXPECT_EQ(EdgeType::NOT_CONNECTED, graph.areConnected("B", "C"));
+    EXPECT_EQ(EdgeType::NF, graph.areConnected("X", "Y"));
 
 
 }

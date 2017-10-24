@@ -141,6 +141,51 @@ EdgeType Graph::areConnected(const std::string& A, const std::string& B) {
 
 }
 
+RangeType Graph::range(const std::string& A, const std::string& B) {
+
+    RangeType range;
+    if(A == B) {
+        range.edgeType = EdgeType::NOT_CONNECTED; // TODO: refactor this!
+        return range;
+    }
+
+    auto a = search(A);
+    auto b = search(B);
+
+
+    if(!a && !b) {
+        range.edgeType = EdgeType::NF;
+        return range;
+    }
+    else if(!a) {
+        range.edgeType = EdgeType::FIRST_NF;
+        return range;
+    }
+    else if(!b) {
+        range.edgeType = EdgeType::SECOND_NF;
+        return range;
+    }
+
+
+    if(a->find_sp(B)) {
+        if(b->find_wp(A)) {
+            range.edgeType = EdgeType::DOUBLE_F;
+            return range;
+        }
+        else {
+            range.edgeType = EdgeType::DIRECT;
+            range.range = 1;
+            return range;
+        }
+    }
+    else {
+        // TODO: look recursevly and counting range
+    }
+
+
+}
+
+
 /* protected: */
 shared_ptr<Node> Graph::search_r(const std::string &value,
                                  shared_ptr<Node> start) {

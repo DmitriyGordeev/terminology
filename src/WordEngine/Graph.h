@@ -18,6 +18,19 @@ enum EdgeType {
     NF           // both are not found inside a Graph
 };
 
+struct RangeType {
+    RangeType() {
+        range = 0;
+        edgeType = NOT_CONNECTED;
+    }
+    explicit RangeType(int range, EdgeType edgeType) {
+        this->range = range;
+        this->edgeType = edgeType;
+    }
+
+    int range;
+    EdgeType edgeType;
+};
 
 struct Node
 {
@@ -46,9 +59,9 @@ public:
     std::shared_ptr<Node> add(const std::string& value);
     std::shared_ptr<Node> add(const std::string& value, const std::vector<std::string>& links);
     std::shared_ptr<Node> search(const std::string& value);
-
-
     EdgeType areConnected(const std::string& A, const std::string& B);
+
+    RangeType range(const std::string& A, const std::string& B);
 
     size_t size() const { return _size; }
 

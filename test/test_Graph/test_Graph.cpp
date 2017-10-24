@@ -7,8 +7,7 @@
 
 using namespace std;
 
-class TestGraph: public Graph
-{
+class TestGraph: public Graph {
 public:
     TestGraph() : Graph() {}
 
@@ -16,6 +15,7 @@ public:
                                         const std::shared_ptr<Node>& start) {
         return search_r(value, start);
     }
+
     std::vector<std::shared_ptr<Node>>& getNodes() { return _nodes; }
 
 };
@@ -191,6 +191,7 @@ TEST(TestGraph, search_existedInRoot) {
 }
 
 
+
 /* add method */
 TEST(TestGraph, add_returnsCorrectValueOnEmpty) {
 
@@ -245,6 +246,7 @@ TEST(TestGraph, add_withLinks_SmthAlreadyExists) {
 
     EXPECT_EQ(3, graph.size());
 }
+
 
 
 /* areConnected method: */

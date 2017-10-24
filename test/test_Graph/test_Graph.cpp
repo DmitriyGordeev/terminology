@@ -267,8 +267,6 @@ TEST(TestGraph, areConnected) {
     EXPECT_EQ(EdgeType::SECOND_NF, graph.areConnected("C", "X"));
     EXPECT_EQ(EdgeType::NOT_CONNECTED, graph.areConnected("B", "C"));
     EXPECT_EQ(EdgeType::NF, graph.areConnected("X", "Y"));
-
-
 }
 
 

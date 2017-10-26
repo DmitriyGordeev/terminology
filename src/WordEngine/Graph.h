@@ -32,8 +32,8 @@ struct RangeType {
     EdgeType edgeType;
 };
 
-struct Node
-{
+struct Node {
+
     explicit Node(const std::string& value) {
         this->value = value;
     }
@@ -49,9 +49,8 @@ struct Node
     std::vector<std::weak_ptr<Node>> wp_nodes;
 };
 
+class Graph {
 
-class Graph
-{
 public:
     Graph();
     ~Graph();
@@ -61,7 +60,7 @@ public:
     std::shared_ptr<Node> search(const std::string& value);
     EdgeType areConnected(const std::string& A, const std::string& B);
 
-    RangeType range(const std::string& A, const std::string& B);
+    // TODO: write own iterator class
 
     size_t size() const { return _size; }
 
@@ -76,6 +75,5 @@ private:
 
 
 };
-
 
 #endif //PROJECT_GRAPH_H

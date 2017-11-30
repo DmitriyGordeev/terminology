@@ -60,6 +60,8 @@ public:
     std::shared_ptr<Node> search(const std::string& value);
     EdgeType areConnected(const std::string& A, const std::string& B);
 
+    std::string svg();
+
     // TODO: write own iterator class
 
     size_t size() const { return _size; }

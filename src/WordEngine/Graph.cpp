@@ -141,6 +141,10 @@ EdgeType Graph::areConnected(const std::string& A, const std::string& B) {
 
 }
 
+
+std::string Graph::svg() {}
+
+
 /* protected: */
 shared_ptr<Node> Graph::search_r(const std::string &value,
                                  shared_ptr<Node> start) {

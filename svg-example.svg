@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1136pt" height="788pt"
+     viewBox="0.00 0.00 1136.00 788.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(36 752)">
+
+        <title>TITLE</title>
+        <polygon fill="#2e3e56" stroke="#2e3e56" points="-36,37 -36,-752 1101,-752 1101,37 -36,37"/>
+
+        <g id="node1" class="node"><title>A</title>
+            <a xlink:title="Go A">
+                <ellipse fill="#8eabd9" stroke="#8eabd9" stroke-width="3" cx="521" cy="-694" rx="21.25" ry="21.5"/>
+            </a>
+        </g>
+
+        <g id="node2" class="node"><title>B</title>
+            <ellipse fill="#a5cf80" stroke="#a5cf80" stroke-width="3" cx="553" cy="-614" rx="21.25" ry="21.5"/>
+        </g>
+
+        <g id="edge1" class="edge"><title>A to B</title>
+            <path fill="none" stroke="#fcfcfc" stroke-width="2" d="M528.91,-673.719C532.669,-664.557 537.236,-653.424 541.379,-643.326"/>
+            <polygon fill="#fcfcfc" stroke="#fcfcfc" points="544.623,-644.639 545.181,-634.059 538.147,-641.982 544.623,-644.639"/>
+        </g>
+
+        <g id="node3" class="node"><title>C</title>
+            <ellipse fill="#edad56" stroke="#edad56" stroke-width="3" cx="489" cy="-614" rx="21.25" ry="21.5"/>
+        </g>
+    </g>
+</svg>
